@@ -5,6 +5,7 @@
 
 # Database dumps (keep schema, exclude data dumps)
 *.sql
+!database/schema.sql
 !donare_db.sql
 
 # Dependencies
@@ -24,16 +25,20 @@ Thumbs.db
 
 # Logs
 *.log
-logs/
-
-# Uploads (keep directory structure)
-uploads/*
-!uploads/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
 
 # Cache
 *.cache
 .php_cs.cache
+storage/cache/*
+!storage/cache/.gitkeep
 
+# Uploads (keep directory structure)
+public/uploads/*
+!public/uploads/.gitkeep
+uploads/*
+!uploads/.gitkeep
 # Build outputs
 dist/
 build/
@@ -42,3 +47,6 @@ build/
 tmp/
 temp/
 *.tmp
+
+# Composer
+composer.lock

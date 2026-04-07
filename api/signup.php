@@ -1,8 +1,10 @@
 <?php
 /**
- * User signup - Simple version with validation
+ * User Signup API Endpoint
+ * 
+ * POST: Register a new user account
  */
-require_once 'db.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

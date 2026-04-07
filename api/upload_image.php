@@ -1,8 +1,13 @@
 <?php
 /**
- * Upload image - Simple version
+ * Image Upload API Endpoint
+ * 
+ * POST: Upload campaign images
  */
-require 'db.php';
+require_once 'bootstrap.php';
+
+// Load app config for upload settings
+$appConfig = require dirname(__DIR__) . '/config/app.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -43,7 +48,7 @@ if ($file['size'] > 5 * 1024 * 1024) {
 }
 
 // Create uploads directory if needed
-$uploadDir = __DIR__ . '/../uploads/';
+$uploadDir = __DIR__ . '/../public/uploads/';
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }

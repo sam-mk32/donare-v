@@ -1,8 +1,10 @@
 <?php
 /**
- * Login endpoint - Simple version
+ * Login API Endpoint
+ * 
+ * POST: Authenticate user and return session data
  */
-require_once 'db.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

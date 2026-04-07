@@ -1,8 +1,10 @@
 <?php
 /**
- * Support ticket submission - with proper validation
+ * Support Ticket API Endpoint
+ * 
+ * POST: Submit a support ticket
  */
-require 'db.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

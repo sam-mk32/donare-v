@@ -1,8 +1,10 @@
 <?php
 /**
- * Trustee NGO management - Returns campaigns, history, and donations
+ * Trustee Dashboard API Endpoint
+ * 
+ * GET: Returns campaigns, history, and donations for an NGO
  */
-require 'db.php';
+require_once 'bootstrap.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 

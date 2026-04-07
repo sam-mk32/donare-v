@@ -1,13 +1,18 @@
 <?php
 /**
- * Process donation - with smart donation caps and transaction limits
+ * Donation Processing API Endpoint
+ * 
+ * POST: Process a new donation
  * 
  * Features:
  * - Per-transaction limit: ₹10,000 max per payment
  * - Campaign goal cap: Cannot donate more than remaining amount to reach goal
  * - Goal reached: No donations accepted once campaign reaches 100%
  */
-require 'db.php';
+require_once 'bootstrap.php';
+
+// Load app config for donation limits
+$appConfig = require dirname(__DIR__) . '/config/app.php';
 
 // Global per-transaction limit (industry standard for online donations)
 define('MAX_TRANSACTION_AMOUNT', 10000);

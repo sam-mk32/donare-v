@@ -1,5 +1,10 @@
 <?php
-require 'db.php';
+/**
+ * Campaigns API Endpoint
+ * 
+ * GET: Retrieve all active campaigns
+ */
+require_once 'bootstrap.php';
 
 // Global per-transaction limit (must match donate.php)
 define('MAX_TRANSACTION_AMOUNT', 10000);

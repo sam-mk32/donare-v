@@ -1,8 +1,11 @@
 <?php
 /**
- * Admin donations view - with DELETE support and error handling
+ * Admin Donations API Endpoint
+ * 
+ * GET: Retrieve all donations
+ * DELETE: Delete a donation and reverse campaign totals
  */
-require 'db.php';
+require_once 'bootstrap.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 

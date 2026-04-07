@@ -1,8 +1,13 @@
 <?php
 /**
- * Admin campaign management - with transactions and error handling
+ * Admin Campaign Management API Endpoint
+ * 
+ * GET: Retrieve all campaigns (including inactive)
+ * POST: Create a new campaign
+ * PUT: Update an existing campaign
+ * DELETE: Delete/deactivate a campaign
  */
-require 'db.php';
+require_once 'bootstrap.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 

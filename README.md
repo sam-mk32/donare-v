@@ -421,32 +421,72 @@ Submit a support ticket.
 
 ```
 donare-v/
-├── api/                    # Backend PHP API endpoints
-│   ├── admin_campaigns.php # Admin campaign CRUD
-│   ├── admin_donations.php # Admin donation management
-│   ├── admin_support.php   # Support ticket management
-│   ├── campaigns.php       # Public campaign listing
-│   ├── db.php              # Database connection
-│   ├── donate.php          # Donation processing
-│   ├── login.php           # User authentication
-│   ├── logout.php          # Session termination
-│   ├── my_donations.php    # User donation history
-│   ├── ngo_history.php     # NGO transparency data
-│   ├── signup.php          # User registration
-│   ├── support.php         # Support ticket submission
-│   ├── trustee.php         # Trustee dashboard data
-│   └── upload_image.php    # Image upload handler
+├── api/                        # API endpoints (public-facing)
+│   ├── bootstrap.php           # Common includes & autoloading
+│   ├── admin_campaigns.php     # Admin campaign CRUD
+│   ├── admin_donations.php     # Admin donation management
+│   ├── admin_support.php       # Support ticket management
+│   ├── campaigns.php           # Public campaign listing
+│   ├── db.php                  # Legacy database connection
+│   ├── donate.php              # Donation processing
+│   ├── login.php               # User authentication
+│   ├── logout.php              # Session termination
+│   ├── my_donations.php        # User donation history
+│   ├── ngo_history.php         # NGO transparency data
+│   ├── signup.php              # User registration
+│   ├── support.php             # Support ticket submission
+│   ├── trustee.php             # Trustee dashboard data
+│   └── upload_image.php        # Image upload handler
 │
-├── uploads/                # User-uploaded images
+├── config/                     # Configuration files
+│   ├── app.php                 # Application settings
+│   ├── cors.php                # CORS configuration
+│   └── database.php            # Database connection settings
 │
-├── donare.html            # Main single-page application
-├── main.js                # Frontend JavaScript logic
-├── styles32.css           # Stylesheet
-├── donare_db.sql          # Database schema and seed data
+├── database/                   # Database files
+│   ├── schema.sql              # Database schema
+│   ├── migrations/             # Database migrations
+│   └── seeds/                  # Seed data
 │
-├── .env.example           # Environment variable template
-├── .gitignore             # Git ignore rules
-└── README.md              # Project documentation
+├── docs/                       # Documentation
+│   ├── API.md                  # API documentation
+│   └── DATABASE.md             # Database schema docs
+│
+├── public/                     # Web root (publicly accessible)
+│   ├── index.html              # Main application entry
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── main.css        # Application styles
+│   │   ├── js/
+│   │   │   └── app.js          # Frontend JavaScript
+│   │   └── images/             # Static images
+│   └── uploads/                # User-uploaded files
+│
+├── src/                        # Backend source code
+│   ├── Api/
+│   │   ├── Controllers/        # Request handlers (future)
+│   │   ├── Middleware/
+│   │   │   └── CorsMiddleware.php
+│   │   └── Routes/             # API routing (future)
+│   ├── Core/
+│   │   ├── Database.php        # Database singleton
+│   │   ├── Response.php        # JSON response helper
+│   │   └── Validator.php       # Input validation
+│   └── Models/                 # Data models (future)
+│
+├── storage/                    # Application storage
+│   ├── cache/                  # Cache files
+│   └── logs/                   # Application logs
+│
+├── tests/                      # Test files
+│
+├── .env.example                # Environment template
+├── .gitignore                  # Git ignore rules
+├── composer.json               # PHP dependencies
+├── CONTRIBUTING.md             # Contribution guidelines
+├── donare_db.sql               # Legacy database file
+├── LICENSE                     # MIT License
+└── README.md                   # This file
 ```
 
 ---

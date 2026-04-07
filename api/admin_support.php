@@ -1,8 +1,11 @@
 <?php
 /**
- * Admin support tickets view - with status update support
+ * Admin Support Tickets API Endpoint
+ * 
+ * GET: Retrieve all support tickets
+ * POST: Update ticket status
  */
-require 'db.php';
+require_once 'bootstrap.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 

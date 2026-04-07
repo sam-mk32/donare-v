@@ -1,0 +1,41 @@
+{
+    "name": "donare/donation-platform",
+    "description": "A comprehensive donation management platform connecting donors with verified NGOs",
+    "type": "project",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Donare Team",
+            "email": "support@donare.org"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-mysqli": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Donare\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Donare\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "php -l src/"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

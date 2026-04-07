@@ -1,9 +1,10 @@
 <?php
 /**
- * Logout endpoint - Simple version
- * Clears the session (if any) and returns success
+ * Logout API Endpoint
+ * 
+ * POST: Clear session and logout user
  */
-require_once 'db.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

@@ -1,5 +1,10 @@
 <?php
-require 'db.php';
+/**
+ * NGO History API Endpoint
+ * 
+ * GET: Retrieve historical data for an NGO
+ */
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);

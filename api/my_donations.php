@@ -1,8 +1,10 @@
 <?php
 /**
- * My donations - Simple version
+ * My Donations API Endpoint
+ * 
+ * GET: Retrieve donation history for a user
  */
-require 'db.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
