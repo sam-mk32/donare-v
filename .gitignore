@@ -1,3 +1,44 @@
-*.sql
+# Environment files
 .env
+.env.local
+.env.*.local
+
+# Database dumps (keep schema, exclude data dumps)
+*.sql
+!donare_db.sql
+
+# Dependencies
 node_modules/
+vendor/
+
+# IDE and Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Uploads (keep directory structure)
+uploads/*
+!uploads/.gitkeep
+
+# Cache
+*.cache
+.php_cs.cache
+
+# Build outputs
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
