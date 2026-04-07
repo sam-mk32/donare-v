@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donare – Donation Management System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles32.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <!-- ═══════════════════════════════
+     NAVIGATION
+═══════════════════════════════ -->
+    <nav class="nav">
+      <div class="nav-brand" onclick="switchPage('home')">
+        Don<span>a</span>re
+      </div>
+
+      <!-- Hamburger Toggle -->
+      <div class="nav-toggle" onclick="toggleMobileMenu()">
+        <svg width="30" height="20" viewBox="0 0 30 20" fill="none" stroke-width="2.5" stroke-linecap="round">
+          <line x1="2" y1="4" x2="28" y2="4" stroke="var(--gold)"></line>
+          <line x1="2" y1="10" x2="20" y2="10" stroke="var(--green)"></line>
+          <line x1="2" y1="16" x2="28" y2="16" stroke="var(--gold)"></line>
+        </svg>
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+        <!-- Public links (always visible when not admin/trustee) -->
+        <div class="nav-links" id="publicNavLinks">
+          <button class="nav-link active" onclick="switchPage('home')">
+            Home
+          </button>
+          <button class="nav-link" onclick="switchPage('about')">About Us</button>
+          <button class="nav-link" onclick="switchPage('campaigns')">
+            Campaigns
+          </button>
+          <button class="nav-link" onclick="switchPage('support')">
+            Support
+          </button>
+          <!-- Extra tab for logged-in users -->
+          <button
+            class="nav-link"
+            id="myDonationsTab"
+            style="display: none"
+            onclick="switchPage('history')"
+          >
+            My Donations
+          </button>
+        </div>
+
+        <!-- Admin-only nav tabs -->
+        <div class="nav-links" id="adminNavLinks" style="display: none">
+          <button class="nav-link" onclick="switchPage('campaigns')">All Campaigns</button>
+          <button class="nav-link" onclick="switchPage('admin-campaigns')">Manage Campaigns</button>
+          <button class="nav-link" onclick="switchPage('admin-donations')">Donations</button>
+          <button class="nav-link" onclick="switchPage('admin-support')">Support Messages</button>
+        </div>
+
+        <!-- Trustee-only nav tabs -->
+        <div class="nav-links" id="trusteeNavLinks" style="display: none">
+          <button class="nav-link" onclick="switchPage('campaigns')">All Campaigns</button>
+          <button class="nav-link active" onclick="switchPage('trustee')">My NGO</button>
+        </div>
+
+        <!-- Auth buttons (logged out) -->
+        <div class="nav-auth" id="navAuth">
+          <button class="btn-nav-login" onclick="switchPage('login')">
+            Login
+          </button>
+          <button class="btn-nav-signup" onclick="switchPage('signup')">
+            Sign Up
+          </button>
+        </div>
+
+        <!-- User chip (logged in) -->
+        <div class="nav-user-chip" id="navUserChip" style="display: none">
+          <span id="navUserName">User</span>
+          <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════
+     PAGES
+═══════════════════════════════ -->
+    <div class="main-content">
+      <!-- ─── HOME ─── -->
+      <div class="page active" id="page-home">
+        <div class="hero">
+          <div class="hero-inner">
+            <div class="hero-content">
+              <div class="hero-tag">✦ Trusted Giving Platform</div>
+              <h1>Give with <em>purpose,</em><br />change with impact.</h1>
+              <p>
+                Every contribution — big or small — powers real change for real
+                communities around the world.
+              </p>
+              <div class="hero-cta">
+                <button class="btn-hero-primary" onclick="switchPage('campaigns')">
+                  Browse Campaigns
+                </button>
+                <button class="btn-hero-secondary" onclick="switchPage('about')">
+                  Learn More
+                </button>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="visual-accent">
+                <div class="accent-blob accent-1"></div>
+                <div class="accent-blob accent-2"></div>
+                <div class="accent-glass">
+                  <div class="glass-icon">✨</div>
+                  <div class="glass-text">Real Impact</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-n">1.2M+</div>
+              <div class="stat-l">Total Raised</div>
+            </div>
+            <div>
+              <div class="stat-n">6</div>
+              <div class="stat-l">Active Campaigns</div>
+            </div>
+            <div>
+              <div class="stat-n">1,179</div>
+              <div class="stat-l">Donors</div>
+            </div>
+            <div>
+              <div class="stat-n">5 NGOs</div>
+              <div class="stat-l">Partners</div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-header anim">
+            <div class="section-title">Featured Campaigns</div>
+            <button
+              class="btn-nav-signup"
+              onclick="switchPage('campaigns')"
+              style="font-size: 13px; padding: 9px 18px"
+            >
+              View All →
+            </button>
+          </div>
+          <div class="grid" id="homeGrid"></div>
+        </div>
+        <div
+          style="
+            background: var(--bg2);
+            padding: 64px 48px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+          "
+        >
+          <div class="section-headline anim" style="margin-bottom: 44px">
+            How <span>Donare</span> works
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+              gap: 24px;
+              max-width: 900px;
+              margin: 0 auto;
+              text-align: center;
+            "
+          >
+            <div class="anim anim-d1">
+              <div style="font-size: 36px; margin-bottom: 12px">🔍</div>
+              <div
+                style="
+                  font-family: &quot;Playfair Display&quot;, serif;
+                  font-size: 16px;
+                  font-weight: 700;
+                  margin-bottom: 8px;
+                "
+              >
+                Browse
+              </div>
+              <div
+                style="font-size: 13px; color: var(--muted); line-height: 1.6"
+              >
+                Explore verified campaigns from trusted NGO partners.
+              </div>
+            </div>
+            <div class="anim anim-d2">
+              <div style="font-size: 36px; margin-bottom: 12px">💳</div>
+              <div
+                style="
+                  font-family: &quot;Playfair Display&quot;, serif;
+                  font-size: 16px;
+                  font-weight: 700;
+                  margin-bottom: 8px;
+                "
+              >
+                Donate
+              </div>
+              <div
+                style="font-size: 13px; color: var(--muted); line-height: 1.6"
+              >
+                Give securely in just a few clicks — any amount helps.
+              </div>
+            </div>
+            <div class="anim anim-d3">
+              <div style="font-size: 36px; margin-bottom: 12px">📧</div>
+              <div
+                style="
+                  font-family: &quot;Playfair Display&quot;, serif;
+                  font-size: 16px;
+                  font-weight: 700;
+                  margin-bottom: 8px;
+                "
+              >
+                Receipt
+              </div>
+              <div
+                style="font-size: 13px; color: var(--muted); line-height: 1.6"
+              >
+                Receive an instant receipt straight to your inbox.
+              </div>
+            </div>
+            <div class="anim anim-d4">
+              <div style="font-size: 36px; margin-bottom: 12px">📊</div>
+              <div
+                style="
+                  font-family: &quot;Playfair Display&quot;, serif;
+                  font-size: 16px;
+                  font-weight: 700;
+                  margin-bottom: 8px;
+                "
+              >
+                Track
+              </div>
+              <div
+                style="font-size: 13px; color: var(--muted); line-height: 1.6"
+              >
+                Monitor your giving history and campaign progress.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ─── ABOUT US ─── -->
+      <div class="page" id="page-about">
+        <div class="about-hero">
+          <div class="hero-tag anim anim-d1">✦ Our Story</div>
+          <h1 class="anim anim-d2">Giving made <em>transparent,</em><br />trust made permanent.</h1>
+          <p class="anim anim-d3">
+            Donare was built on a simple belief — that every act of generosity
+            deserves accountability, and every donor deserves to see the impact
+            of their contribution.
+          </p>
+        </div>
+
+        <div class="about-section">
+          <div class="about-grid" style="max-width: 1100px; margin: 0 auto">
+            <div class="about-text anim-left">
+              <h2>Our <em>Mission</em></h2>
+              <p>
+                Donare exists to bridge the gap between generous donors and the
+                NGOs doing critical work on the ground. We built a centralized
+                platform where campaigns are verified, donations are tracked
+                transparently, and receipts are issued automatically.
+              </p>
+              <p>
+                Whether you're contributing ₹ 10 or ₹ 10,000 — your giving is
+                recorded, acknowledged, and directed exactly where you intend it
+                to go.
+              </p>
+              <p>
+                We partner exclusively with registered NGOs who share our
+                commitment to accountability and measurable impact.
+              </p>
+            </div>
+            <div class="about-visual anim-right">
+              <div class="about-stat-item">
+                <div class="about-stat-icon">🌍</div>
+                <div>
+                  <div class="about-stat-val">₹ 1.2M+</div>
+                  <div class="about-stat-label">
+                    Total funds raised since launch
+                  </div>
+                </div>
+              </div>
+              <div class="about-stat-item">
+                <div class="about-stat-icon">🤝</div>
+                <div>
+                  <div class="about-stat-val">5 NGOs</div>
+                  <div class="about-stat-label">
+                    Verified partner organizations
+                  </div>
+                </div>
+              </div>
+              <div class="about-stat-item">
+                <div class="about-stat-icon">👥</div>
+                <div>
+                  <div class="about-stat-val">1,179</div>
+                  <div class="about-stat-label">
+                    Donors who have given to date
+                  </div>
+                </div>
+              </div>
+              <div class="about-stat-item">
+                <div class="about-stat-icon">📋</div>
+                <div>
+                  <div class="about-stat-val">6 Active</div>
+                  <div class="about-stat-label">
+                    Campaigns currently running
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <div class="section-headline anim">What we <span>stand for</span></div>
+          <div class="values-grid">
+            <div class="value-card anim anim-d1">
+              <div class="value-icon">🔍</div>
+              <div class="value-title">Transparency</div>
+              <div class="value-desc">
+                Every donation is logged, receipted, and traceable. No hidden
+                fees, no vague promises.
+              </div>
+            </div>
+            <div class="value-card anim anim-d2">
+              <div class="value-icon">🛡️</div>
+              <div class="value-title">Trust</div>
+              <div class="value-desc">
+                We vet every NGO partner before they list a campaign on our
+                platform.
+              </div>
+            </div>
+            <div class="value-card anim anim-d3">
+              <div class="value-icon">⚡</div>
+              <div class="value-title">Efficiency</div>
+              <div class="value-desc">
+                Donations reach NGOs fast, with minimal overhead and instant
+                digital receipts.
+              </div>
+            </div>
+            <div class="value-card anim anim-d4">
+              <div class="value-icon">🌱</div>
+              <div class="value-title">Impact</div>
+              <div class="value-desc">
+                We measure outcomes, not just outputs. Real lives changed,
+                tracked and reported.
+              </div>
+            </div>
+            <div class="value-card anim anim-d5">
+              <div class="value-icon">♿</div>
+              <div class="value-title">Inclusivity</div>
+              <div class="value-desc">
+                Anyone can donate, from anywhere, in any amount. Giving should
+                have no barriers.
+              </div>
+            </div>
+            <div class="value-card anim anim-d6">
+              <div class="value-icon">🔒</div>
+              <div class="value-title">Security</div>
+              <div class="value-desc">
+                Donor data is protected. We never share or sell personal
+                information, ever.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div
+          class="about-section"
+          style="background: var(--bg2); border-top: 1px solid var(--border)"
+        >
+          <div class="section-headline">Meet the <span>team</span></div>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar">👨‍💼</div>
+              <div class="team-name">Ahmad Ridzwan</div>
+              <div class="team-role">Founder & CEO</div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👩‍💻</div>
+              <div class="team-name">Nurul Aisyah</div>
+              <div class="team-role">Lead Developer</div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👨‍🎨</div>
+              <div class="team-name">Harith Zafran</div>
+              <div class="team-role">UX Designer</div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👩‍📊</div>
+              <div class="team-name">Priya Nair</div>
+              <div class="team-role">Partnership Director</div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">👨‍⚖️</div>
+              <div class="team-name">Daniel Lim</div>
+              <div class="team-role">Compliance Officer</div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="about-section">
+          <div class="section-headline anim">Our NGO <span>partners</span></div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+              gap: 16px;
+              max-width: 1100px;
+              margin: 0 auto;
+            "
+          >
+            <div class="value-card anim anim-d1" style="text-align: center">
+              <div style="font-size: 32px; margin-bottom: 10px">💧</div>
+              <div class="value-title">WaterFirst NGO</div>
+              <div class="value-desc">
+                Clean water access for rural communities.
+              </div>
+            </div>
+            <div class="value-card anim anim-d2" style="text-align: center">
+              <div style="font-size: 32px; margin-bottom: 10px">🌳</div>
+              <div class="value-title">GreenEarth Alliance</div>
+              <div class="value-desc">
+                Reforestation and environmental restoration.
+              </div>
+            </div>
+            <div class="value-card anim anim-d3" style="text-align: center">
+              <div style="font-size: 32px; margin-bottom: 10px">🍱</div>
+              <div class="value-title">FeedHope Foundation</div>
+              <div class="value-desc">
+                Emergency food relief for displaced families.
+              </div>
+            </div>
+            <div class="value-card anim anim-d4" style="text-align: center">
+              <div style="font-size: 32px; margin-bottom: 10px">📚</div>
+              <div class="value-title">EduRise NGO</div>
+              <div class="value-desc">
+                Scholarships for girls in marginalized areas.
+              </div>
+            </div>
+            <div class="value-card anim anim-d5" style="text-align: center">
+              <div style="font-size: 32px; margin-bottom: 10px">☀️</div>
+              <div class="value-title">LightUp Alliance</div>
+              <div class="value-desc">Solar energy for off-grid villages.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── CAMPAIGNS ─── -->
+      <div class="page" id="page-campaigns">
+        <div class="section">
+          <div class="section-header">
+            <div class="section-title">All Campaigns</div>
+            <div class="filter-pills" id="filterPills"></div>
+          </div>
+          <div class="grid" id="campaignGrid"></div>
+        </div>
+      </div>
+
+      <!-- ─── SUPPORT ─── -->
+      <div class="page" id="page-support">
+        <div class="support-hero">
+          <div class="hero-tag anim anim-d1">✦ We're here for you</div>
+          <h1 class="anim anim-d2">How can we <em>help?</em></h1>
+          <p class="anim anim-d3">
+            Reach out with any question, issue, or feedback. Our team typically
+            responds within 24 hours on business days.
+          </p>
+        </div>
+        <div class="support-layout">
+          <div class="support-form-wrap anim-left">
+            <div class="support-form-title">Send us a message</div>
+            <div class="support-form-sub">
+              Fill in the form below and we'll get back to you as soon as
+              possible.
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label>Full Name</label
+                ><input
+                  type="text"
+                  id="suppName"
+                  placeholder="Your full name"
+                />
+              </div>
+              <div class="input-group">
+                <label>Email Address</label
+                ><input
+                  type="email"
+                  id="suppEmail"
+                  placeholder="you@email.com"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label>Phone Number</label
+                ><input type="tel" id="suppPhone" placeholder="+60 12-345 6789" />
+              </div>
+              <div class="input-group">
+                <label>Category</label>
+                <select id="suppCat">
+                  <option value="">Select a category…</option>
+                  <option>General Enquiry</option>
+                  <option>Donation Issue</option>
+                  <option>Receipt / Tax</option>
+                  <option>Campaign Feedback</option>
+                  <option>Partnership</option>
+                  <option>Technical Problem</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Your Query or Issue</label
+              ><textarea
+                id="suppQuery"
+                placeholder="Describe your query or issue in detail…"
+              ></textarea>
+            </div>
+            <button
+              class="btn-primary"
+              style="width: 100%; margin-top: 4px"
+              onclick="submitSupport()"
+            >
+              Send Message →
+            </button>
+            <div class="success-msg" id="supportSuccess">
+              <div class="s-icon">✅</div>
+              <p>Message sent successfully!</p>
+              <small
+                >We'll respond to your email within 24 business hours.</small
+              >
+            </div>
+          </div>
+          <div class="support-sidebar anim-right">
+            <div class="support-info-card">
+              <div class="support-info-icon">📧</div>
+              <div class="support-info-title">Email Us</div>
+              <div class="support-info-text">
+                For general enquiries and support requests.
+              </div>
+              <div class="support-info-val">support@donare.org</div>
+            </div>
+            <div class="support-info-card">
+              <div class="support-info-icon">📞</div>
+              <div class="support-info-title">Call Us</div>
+              <div class="support-info-text">
+                Available Monday–Friday, 9am–5pm.
+              </div>
+              <div class="support-info-val">+603 8888 1234</div>
+            </div>
+            <div class="support-info-card">
+              <div class="support-info-icon">❓</div>
+              <div class="support-info-title">Frequently Asked Questions</div>
+              <div style="margin-top: 12px">
+                <div class="faq-item">
+                  <div class="faq-q">How do I get my donation receipt?</div>
+                  <div class="faq-a">
+                    Receipts are emailed automatically right after your donation
+                    is confirmed.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-q">Can I donate anonymously?</div>
+                  <div class="faq-a">
+                    Yes — simply enter "Anonymous" as your name when donating.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-q">Are donations tax-deductible?</div>
+                  <div class="faq-a">
+                    Donations to registered NGOs qualify for tax exemption under
+                    Section 44(6) ITA.
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-q">How do I start a campaign?</div>
+                  <div class="faq-a">
+                    NGOs can apply for a trustee account via hello@donare.org.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── LOGIN ─── -->
+      <div class="page" id="page-login">
+        <div class="auth-page">
+          <div class="auth-card">
+            <div class="auth-brand">Don<span>a</span>re</div>
+            <div class="auth-tagline">Sign in to your account</div>
+            <div class="auth-error" id="loginError">
+              Invalid email or password. Please try again.
+            </div>
+            <div class="input-group">
+              <label>Email Address</label>
+              <input
+                type="email"
+                id="loginEmail"
+                placeholder="you@email.com"
+                onkeydown="if (event.key === 'Enter') doLogin();"
+              />
+            </div>
+            <div class="input-group">
+              <label>Password</label>
+              <div class="password-input-wrapper">
+                <input
+                  type="password"
+                  id="loginPassword"
+                  placeholder="••••••••"
+                  onkeydown="if (event.key === 'Enter') doLogin();"
+                />
+                <button 
+                  type="button" 
+                  class="password-toggle" 
+                  onclick="togglePasswordVisibility('loginPassword', this)"
+                  aria-label="Toggle password visibility"
+                >
+                  <span class="eye-icon">👁️</span>
+                </button>
+              </div>
+            </div>
+            <button
+              class="btn-primary"
+              style="width: 100%; margin-top: 4px"
+              onclick="doLogin()"
+            >
+              Sign In →
+            </button>
+            <div class="auth-divider"><span>or</span></div>
+            <div class="auth-switch">
+              Don't have an account?
+              <a onclick="switchPage('signup')">Sign up free</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SIGNUP ─── -->
+      <div class="page" id="page-signup">
+        <div class="auth-page">
+          <div class="auth-card">
+            <div class="auth-brand">Don<span>a</span>re</div>
+            <div class="auth-tagline">Create your free account</div>
+            <div class="auth-error" id="signupError"></div>
+            
+            <!-- Vertical layout: all fields stacked -->
+            <div class="input-group">
+              <label>Full Name</label>
+              <input
+                type="text"
+                id="signupName"
+                placeholder="Your full name"
+              />
+              <div class="field-error" id="signupNameError"></div>
+            </div>
+            
+            <div class="input-group">
+              <label>Email Address</label>
+              <input
+                type="email"
+                id="signupEmail"
+                placeholder="you@email.com"
+              />
+              <div class="field-error" id="signupEmailError"></div>
+            </div>
+            
+            <div class="input-group">
+              <label>Password</label>
+              <div class="password-input-wrapper">
+                <input
+                  type="password"
+                  id="signupPassword"
+                  placeholder="Min. 6 characters"
+                />
+                <button 
+                  type="button" 
+                  class="password-toggle" 
+                  onclick="togglePasswordVisibility('signupPassword', this)"
+                  aria-label="Toggle password visibility"
+                >
+                  <span class="eye-icon">👁️</span>
+                </button>
+              </div>
+              <div class="password-strength" id="signupPasswordStrength"></div>
+              <div class="field-error" id="signupPasswordError"></div>
+            </div>
+            
+            <div class="input-group">
+              <label>Confirm Password</label>
+              <div class="password-input-wrapper">
+                <input
+                  type="password"
+                  id="signupConfirm"
+                  placeholder="Re-enter password"
+                  onkeydown="if (event.key === 'Enter') doSignup();"
+                />
+                <button 
+                  type="button" 
+                  class="password-toggle" 
+                  onclick="togglePasswordVisibility('signupConfirm', this)"
+                  aria-label="Toggle password visibility"
+                >
+                  <span class="eye-icon">👁️</span>
+                </button>
+              </div>
+              <div class="field-error" id="signupConfirmError"></div>
+            </div>
+            
+            <button
+              class="btn-primary"
+              style="width: 100%; margin-top: 4px"
+              onclick="doSignup()"
+            >
+              Create Account →
+            </button>
+            <div class="auth-divider"><span>or</span></div>
+            <div class="auth-switch">
+              Already have an account?
+              <a onclick="switchPage('login')">Sign in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── USER: MY DONATIONS (post-login) ─── -->
+      <div class="page" id="page-history">
+        <div class="section">
+          <div class="section-header">
+            <div class="section-title">My Donation History</div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Receipt ID</th>
+                  <th>Campaign</th>
+                  <th>Amount</th>
+                  <th>Payment</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="historyBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── ADMIN: CAMPAIGNS ─── -->
+      <div class="page" id="page-admin-campaigns">
+        <div class="admin-header">
+          <div class="admin-title">⚙️ Admin Dashboard</div>
+          <div class="admin-sub">
+            Manage all campaigns across every NGO partner.
+          </div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Total Campaigns</div>
+            <div class="kpi-value kpi-gold" id="kpiCampaigns">6</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Total Raised</div>
+            <div class="kpi-value kpi-green" id="kpiRaised">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Total Donors</div>
+            <div class="kpi-value kpi-orange" id="kpiDonors">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">NGO Partners</div>
+            <div class="kpi-value kpi-gold">5</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <div class="table-wrap">
+            <div class="table-head">
+              <div class="table-head-title">All Campaigns</div>
+              <button class="btn-add" onclick="openAddModal()">
+                + Add Campaign
+              </button>
+            </div>
+            <div style="overflow-x: auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Campaign</th>
+                    <th>NGO</th>
+                    <th>Category</th>
+                    <th>Raised</th>
+                    <th>Progress</th>
+                    <th>Max Limit</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminCampaignBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── ADMIN: DONATIONS ─── -->
+      <div class="page" id="page-admin-donations">
+        <div class="admin-header">
+          <div class="admin-title">💳 All Donations</div>
+          <div class="admin-sub">
+            Monitor every donation across the platform.
+          </div>
+        </div>
+        <div class="admin-table-wrap" style="margin-top: 24px">
+          <div class="table-wrap">
+            <div class="table-head">
+              <div class="table-head-title">Donation Records</div>
+              <span
+                style="font-size: 13px; color: var(--dim)"
+                id="donationCount"
+              ></span>
+            </div>
+            <div style="overflow-x: auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Receipt ID</th>
+<th>Donor</th>
+<th>Campaign</th>
+<th>Amount</th>
+<th>Payment</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminDonationBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TRUSTEE ─── -->
+      <div class="page" id="page-trustee">
+        <div class="admin-header">
+          <div class="admin-title">🏢 WaterFirst NGO</div>
+          <div class="admin-sub">
+            Trustee Dashboard — manage your NGO's campaigns and track
+            contributions.
+          </div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">My Campaigns</div>
+            <div class="kpi-value kpi-gold" id="trusteeKpiCampaigns">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Total Raised</div>
+            <div class="kpi-value kpi-green" id="trusteeKpiRaised">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Donors</div>
+            <div class="kpi-value kpi-orange" id="trusteeKpiDonors">—</div>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <div class="table-wrap" style="margin-bottom: 20px">
+            <div class="table-head">
+              <div class="table-head-title">My Campaigns</div>
+<button class="btn-add" onclick="openAddModal()" style="margin-left:auto">+ Add Campaign</button>
+            </div>
+            <div id="trusteeCampaigns"></div>
+          </div>
+          <div class="section-title" style="margin-top: 32px">
+            📋 Campaign History
+          </div>
+          <div id="trusteeHistory"></div>
+          <div class="table-wrap">
+            <div class="table-head">
+              <div class="table-head-title">Donations to My Campaigns</div>
+            </div>
+            <div style="overflow-x: auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Donor</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="trusteeDonationBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ─── ADMIN: SUPPORT MESSAGES ─── -->
+      <div class="page" id="page-admin-support">
+        <div class="admin-header">
+          <div class="admin-title">📬 Support Messages</div>
+          <div class="admin-sub">All user support requests submitted via the contact form.</div>
+        </div>
+        <div class="admin-table-wrap" style="margin-top: 24px">
+          <div class="table-wrap">
+            <div class="table-head">
+              <div class="table-head-title">Inbox</div>
+              <span style="font-size:13px;color:var(--dim)" id="supportMsgCount"></span>
+            </div>
+            <div style="overflow-x: auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Category</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminSupportBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── ADMIN: RESOLVED QUERIES ─── -->
+        <div class="admin-table-wrap" style="margin-top: 32px">
+          <div class="table-wrap">
+            <div class="table-head">
+              <div class="table-head-title">Resolved Queries</div>
+              <span style="font-size: 13px; color: var(--dim)" id="resolvedSupportMsgCount"></span>
+            </div>
+            <div style="overflow-x: auto">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Category</th>
+                    <th>Message</th>
+                    <th>Resolved At</th>
+                    <th>Delete In</th>
+                  </tr>
+                </thead>
+                <tbody id="adminResolvedSupportBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- end .main-content -->
+    <!-- NGO History Modal -->
+    <div class="modal-overlay" id="ngoHistoryModal">
+      <div class="modal modal-wide" style="max-width: 560px">
+        <div class="ngo-history-header">
+          <img id="ngoHistImg" src="" alt="" class="ngo-history-img" />
+          <div class="ngo-history-meta">
+            <div
+              class="modal-title"
+              id="ngoHistTitle"
+              style="margin-bottom: 2px"
+            ></div>
+            <small id="ngoHistSub"></small>
+          </div>
+        </div>
+        <div
+          style="
+            font-size: 11px;
+            color: var(--green);
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+          "
+        >
+          📋 Past Campaign Records
+        </div>
+        <div id="ngoHistBody"></div>
+        <div class="modal-actions" style="margin-top: 20px">
+          <button class="btn-primary" onclick="closeModal('ngoHistoryModal')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════
+     FOOTER
+═══════════════════════════════ -->
+    <footer class="footer anim">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">don<span>a</span>re</div>
+          <div class="footer-desc">
+            A trusted, centralized platform connecting generous donors with
+            verified NGOs — making giving transparent, efficient, and impactful.
+          </div>
+          <div class="footer-social">
+            <div class="social-btn" title="Facebook">🌐</div>
+            <div class="social-btn" title="Twitter/X">🐦</div>
+            <div class="social-btn" title="Instagram">📸</div>
+            <div class="social-btn" title="LinkedIn">💼</div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Platform</div>
+          <div class="footer-links">
+            <div class="footer-link" onclick="switchPage('home')">Home</div>
+            <div class="footer-link" onclick="switchPage('campaigns')">
+              Campaigns
+            </div>
+            <div class="footer-link" onclick="switchPage('about')">
+              About Us
+            </div>
+            <div class="footer-link" onclick="switchPage('support')">
+              Support
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">NGO Partners</div>
+          <div class="footer-links">
+            <div class="footer-link">WaterFirst NGO</div>
+            <div class="footer-link">GreenEarth Alliance</div>
+            <div class="footer-link">FeedHope Foundation</div>
+            <div class="footer-link">EduRise NGO</div>
+            <div class="footer-link">LightUp Alliance</div>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-links">
+            <div class="footer-link">support@donare.org</div>
+            <div class="footer-link">hello@donare.org</div>
+            <div class="footer-link">+603 8888 1234</div>
+            <div
+              class="footer-link"
+              style="margin-top: 6px; color: var(--dim); cursor: default"
+            >
+              Mon–Fri, 9am–5pm
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2026 Donare. All rights reserved. Built with ❤️ for a better world.
+        </div>
+        <div class="footer-bottom-links">
+          <div class="footer-bottom-link">Privacy Policy</div>
+          <div class="footer-bottom-link">Terms of Use</div>
+          <div class="footer-bottom-link">Cookie Policy</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════
+     MODALS
+═══════════════════════════════ -->
+    <div class="modal-overlay" id="donateModal">
+      <div class="modal modal-wide">
+        
+        <!-- Payment Processing Overlay -->
+        <div class="payment-processing-overlay" id="paymentProcessing">
+          <div class="payment-processing-content">
+            <div class="payment-spinner"></div>
+            <div class="payment-success-icon">✓</div>
+            <div class="payment-processing-text" id="paymentProcessingText">Processing your payment...</div>
+            <div class="payment-processing-subtext" id="paymentProcessingSubtext">Please do not close this window</div>
+          </div>
+        </div>
+
+        <!-- Step indicator -->
+        <div class="donate-steps">
+          <div class="donate-step active" id="stepDot1">1</div>
+          <div class="donate-step-line"></div>
+          <div class="donate-step" id="stepDot2">2</div>
+          <div class="donate-step-line"></div>
+          <div class="donate-step" id="stepDot3">3</div>
+        </div>
+        <div class="donate-step-labels">
+          <span>Your Details</span>
+          <span>Amount</span>
+          <span>Payment</span>
+        </div>
+
+        <!-- Campaign header (always visible) -->
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)">
+          <div id="donateEmoji" style="font-size:30px;flex-shrink:0"></div>
+          <div>
+            <div class="modal-title" id="donateTitle" style="font-size:17px;margin-bottom:2px"></div>
+            <div class="modal-sub" id="donateSub" style="margin-bottom:0"></div>
+          </div>
+        </div>
+
+        <!-- ── STEP 1: Personal Details ── -->
+        <div id="donateStep1">
+          <div class="donate-step-heading">Step 1 — Your Details</div>
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="donorName" placeholder="e.g. Ahmad Rizwan" />
+          </div>
+          <div class="input-group">
+            <label>Email Address (for receipt)</label>
+            <input type="email" id="donorEmail" placeholder="you@email.com" />
+          </div>
+          <div class="input-group">
+            <label>Phone Number</label>
+            <input type="tel" id="donorPhone" placeholder="e.g. +60123456789" />
+          </div>
+          <div class="input-group">
+            <label>Address</label>
+            <textarea id="donorAddress" placeholder="Street, City, State" style="height:68px;resize:none"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeModal('donateModal')">Cancel</button>
+            <button class="btn-primary" onclick="donateNext(1)">Next →</button>
+          </div>
+        </div>
+
+        <!-- ── STEP 2: Amount + Payment Method ── -->
+        <div id="donateStep2" style="display:none">
+          <div class="donate-step-heading">Step 2 — Amount &amp; Payment Method</div>
+          <div style="font-size:11px;color:var(--dim);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600">Choose Amount (₹)</div>
+          <div class="amounts">
+            <button class="amt-btn" onclick="setAmount(10)">₹ 10</button>
+            <button class="amt-btn" onclick="setAmount(25)">₹ 25</button>
+            <button class="amt-btn" onclick="setAmount(50)">₹ 50</button>
+            <button class="amt-btn" onclick="setAmount(100)">₹ 100</button>
+            <button class="amt-btn" onclick="setAmount(200)">₹ 200</button>
+          </div>
+          <div class="input-group">
+            <label>Custom Amount (₹)</label>
+            <input type="number" id="donateAmount" min="1" placeholder="e.g. 75" oninput="clearAmountBtns()" />
+          </div>
+          <div class="input-group">
+            <label>Payment Method</label>
+            <select id="paymentMethod">
+              <option value="">— Select a method —</option>
+              <option value="Bank Transfer">🏦 Bank Transfer</option>
+              <option value="Card Payment">💳 Card Payment</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-secondary" onclick="donatePrev(2)">← Back</button>
+            <button class="btn-primary" onclick="donateNext(2)">Next →</button>
+          </div>
+        </div>
+
+        <!-- ── STEP 3a: Bank Transfer ── -->
+        <div id="donateStep3Bank" style="display:none">
+          <div class="donate-step-heading">Step 3 — Bank Transfer Details</div>
+          <div class="input-group">
+            <label>Bank Name</label>
+            <input type="text" id="bankName" placeholder="e.g. Maybank" />
+          </div>
+          <div class="input-group">
+            <label>Account Holder Name</label>
+            <input type="text" id="bankAccountName" placeholder="Name as on bank account" />
+          </div>
+          <div class="input-group">
+            <label>Account Number</label>
+            <input type="text" id="bankAccountNumber" placeholder="e.g. 1234567890" />
+          </div>
+          <div class="input-group">
+            <label>IFSC / SWIFT Code</label>
+            <input type="text" id="bankIfsc" placeholder="e.g. MAYB0000001" />
+          </div>
+          <div class="input-group">
+            <label>Remarks / Reference <span style="color:var(--dim);font-weight:400">(optional)</span></label>
+            <input type="text" id="bankRemarks" placeholder="e.g. Donation for Clean Water" />
+          </div>
+          <div class="modal-actions">
+            <button class="btn-secondary" onclick="donatePrev(3)">← Back</button>
+            <button class="btn-primary" onclick="confirmDonation()">Confirm Donation →</button>
+          </div>
+        </div>
+
+        <!-- ── STEP 3b: Card Payment ── -->
+        <div id="donateStep3Card" style="display:none">
+          <div class="donate-step-heading">Step 3 — Card Payment Details</div>
+          <div class="input-group">
+            <label>Cardholder Name</label>
+            <input type="text" id="cardName" placeholder="Name as on card" />
+          </div>
+          <div class="input-group">
+            <label>Card Number</label>
+            <input type="text" id="cardNumber" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" oninput="formatCardNumber(this)" />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="input-group" style="margin-bottom:0">
+              <label>Expiry Date</label>
+              <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/YY" oninput="formatExpiry(this)" />
+            </div>
+            <div class="input-group" style="margin-bottom:0">
+              <label>CVV</label>
+              <input type="password" id="cardCvv" maxlength="4" placeholder="•••" />
+            </div>
+          </div>
+          <div class="input-group" style="margin-top:12px">
+            <label>Card Type</label>
+            <select id="cardType">
+              <option value="Visa">Visa</option>
+              <option value="Mastercard">Mastercard</option>
+              <option value="Amex">American Express</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-secondary" onclick="donatePrev(3)">← Back</button>
+            <button class="btn-primary" onclick="confirmDonation()">Confirm Donation →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="receiptModal">
+      <div class="modal receipt">
+        <div class="receipt-icon">🎉</div>
+        <div class="receipt-id" id="receiptId"></div>
+        <div style="font-size: 14px; color: var(--dim); margin-bottom: 4px">
+          Donation Confirmed
+        </div>
+        <div class="receipt-amount" id="receiptAmount"></div>
+        <div class="receipt-details" id="receiptDetails"></div>
+        <div class="email-note">
+          📧 Receipt sent to <span id="receiptEmail"></span>
+        </div>
+        <div class="modal-actions" style="margin-top: 24px">
+          <button
+            class="btn-primary"
+            onclick="
+              closeModal('receiptModal');
+              switchPage('history');
+            "
+          >
+            View My Donations
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="addModal">
+      <div class="modal modal-wide">
+        <div class="modal-title">✨ New Campaign</div>
+        <div class="modal-sub">Create a new fundraising campaign</div>
+        <div class="input-group">
+          <label>Campaign Title</label
+          ><input
+            type="text"
+            id="newTitle"
+            placeholder="Campaign title"
+            oninput="checkAiBtn()"
+          />
+        </div>
+        <div class="input-group">
+          <label>NGO Name</label>
+          <input type="text" id="newNgo" placeholder="NGO name" />
+        </div>
+        <div class="input-group">
+          <label>Category</label>
+          <select id="newCategory">
+            <option>Education</option>
+            <option>Environment</option>
+            <option>Humanitarian</option>
+            <option>Energy</option>
+            <option>Health</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Funding Goal (₹)</label
+          ><input type="number" id="newGoal" placeholder="e.g. 25000" />
+        </div>
+        <div class="input-group">
+          <label>Max Donation per Transaction (₹) <span style="color:var(--dim);font-weight:400">(optional)</span></label
+          ><input type="number" id="newMaxDonation" placeholder="Leave empty for no limit" />
+        </div>
+        <div class="input-group">
+          <label>Description</label
+          ><textarea
+            id="newDesc"
+            placeholder="Campaign description…"
+          ></textarea>
+        </div>
+        <div class="input-group">
+          <label>Campaign Image <span style="color:var(--dim);font-weight:400">(optional)</span></label>
+          <div style="display:flex;gap:6px;margin-bottom:10px">
+            <button type="button" id="newImgTabUrl" onclick="switchImgTab('new','url')"
+              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--gold);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+              🔗 Image URL
+            </button>
+            <button type="button" id="newImgTabFile" onclick="switchImgTab('new','file')"
+              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+              📁 Upload File
+            </button>
+          </div>
+          <div id="newImgUrlSection">
+            <input type="text" id="newImageUrl" placeholder="https://example.com/image.jpg" />
+          </div>
+          <div id="newImgFileSection" style="display:none">
+            <input type="file" id="newImageFile" accept="image/*" onchange="handleImageUpload(this,'new')" style="padding:8px" />
+            <div id="newImagePreview" style="margin-top:6px"></div>
+          </div>
+        </div>
+        <button
+          class="btn-ai"
+          id="aiBtn"
+          style="display: none"
+          onclick="generateAiDesc()"
+        >
+          <span id="aiSpinner" class="spinner" style="display: none"></span>
+          <span id="aiBtnText">✦ AI: Generate Description</span>
+        </button>
+        <div class="ai-box" id="aiBox" style="display: none">
+          <div class="ai-box-label">✦ AI Suggested</div>
+          <div class="ai-box-text" id="aiBoxText"></div>
+          <button class="btn-ai" onclick="useAiDesc()" style="margin-top: 8px">
+            Use this →
+          </button>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeModal('addModal')">
+            Cancel
+          </button>
+          <button class="btn-primary" onclick="createCampaign()">
+            Create Campaign
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="editModal">
+      <div class="modal modal-wide">
+        <div class="modal-title">✏️ Edit Campaign</div>
+        <div class="modal-sub">Update campaign details</div>
+        <input type="hidden" id="editId" />
+        <div class="input-group">
+          <label>Title</label> <input type="text" id="editTitle" />
+        </div>
+        <div class="input-group">
+          <label>NGO</label> <input type="text" id="editNgo" />
+        </div>
+        <div class="input-group">
+          <label>Category</label>
+          <select id="editCategory">
+            <option>Education</option>
+            <option>Environment</option>
+            <option>Humanitarian</option>
+            <option>Energy</option>
+            <option>Health</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Goal ₹</label> <input type="number" id="editGoal" />
+        </div>
+        <div class="input-group">
+          <label>Max Donation per Transaction (₹) <span style="color:var(--dim);font-weight:400">(optional)</span></label>
+          <input type="number" id="editMaxDonation" placeholder="Leave empty for no limit" />
+        </div>
+        <div class="input-group">
+          <label>Description</label>
+          <textarea id="editDesc" placeholder="Campaign description…"></textarea>
+        </div>
+        <div class="input-group">
+          <label>Campaign Image <span style="color:var(--dim);font-weight:400">(optional)</span></label>
+          <div style="display:flex;gap:6px;margin-bottom:10px">
+            <button type="button" id="editImgTabUrl" onclick="switchImgTab('edit','url')"
+              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--gold);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+              🔗 Image URL
+            </button>
+            <button type="button" id="editImgTabFile" onclick="switchImgTab('edit','file')"
+              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+              📁 Upload File
+            </button>
+          </div>
+          <div id="editImgUrlSection">
+            <input type="text" id="editImageUrl" placeholder="https://example.com/image.jpg" />
+          </div>
+          <div id="editImgFileSection" style="display:none">
+            <input type="file" id="editImageFile" accept="image/*" onchange="handleImageUpload(this,'edit')" style="padding:8px" />
+            <div id="editImagePreview" style="margin-top:6px"></div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-secondary" onclick="closeModal('editModal')">Cancel</button>
+          <button class="btn-primary" onclick="saveCampaign()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── TOAST NOTIFICATION ─── -->
+    <div id="toast" style="
+      position:fixed; bottom:28px; left:50%; transform:translateX(-50%);
+      background:#1e293b; color:#fff; padding:12px 24px; border-radius:12px;
+      font-size:14px; font-weight:500; box-shadow:0 4px 20px rgba(0,0,0,0.3);
+      opacity:0; pointer-events:none; transition:opacity 0.3s; z-index:9999;
+      white-space:nowrap;
+    "></div>
+
+    <!-- ═══════════════════════════════════════
+     SCROLL-REVEAL ANIMATION ENGINE
+    ═══════════════════════════════════════ -->
+    <script>
+    (function() {
+      'use strict';
+
+      /* ── IntersectionObserver for scroll-reveal ── */
+      const animSelectors = '.anim, .anim-left, .anim-right, .anim-scale';
+
+      function initScrollReveal() {
+        const elements = document.querySelectorAll(animSelectors);
+        if (!elements.length) return;
+
+        // Respect reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          elements.forEach(el => el.classList.add('anim-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('anim-visible');
+              observer.unobserve(entry.target); // only animate once
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        elements.forEach(el => observer.observe(el));
+      }
+
+      /* ── Re-trigger animations on page switch ── */
+      const _origSwitchPage = window.switchPage;
+      if (typeof _origSwitchPage === 'function') {
+        window.switchPage = async function(page) {
+          await _origSwitchPage(page);
+          // Re-observe new elements after dynamic render
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              initScrollReveal();
+            });
+          });
+        };
+      }
+
+      /* ── Stat counter animation ── */
+      function animateCounters() {
+        const statNumbers = document.querySelectorAll('.hero-stats .stat-n');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const text = el.textContent;
+              // Extract number from text like "1.2M+", "6", "1,179", "5 NGOs"
+              const numMatch = text.match(/([\d,\.]+)/);
+              if (numMatch) {
+                const finalNum = parseFloat(numMatch[1].replace(/,/g, ''));
+                const prefix = text.substring(0, text.indexOf(numMatch[1]));
+                const suffix = text.substring(text.indexOf(numMatch[1]) + numMatch[1].length);
+                const hasDecimal = numMatch[1].includes('.');
+                const hasComma = numMatch[1].includes(',');
+                const duration = 1200;
+                const start = performance.now();
+
+                function step(now) {
+                  const elapsed = now - start;
+                  const progress = Math.min(elapsed / duration, 1);
+                  // Ease-out cubic
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  let current = eased * finalNum;
+
+                  if (hasDecimal) {
+                    current = current.toFixed(1);
+                  } else {
+                    current = Math.round(current);
+                    if (hasComma) {
+                      current = current.toLocaleString();
+                    }
+                  }
+                  el.textContent = prefix + current + suffix;
+                  if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+              }
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => observer.observe(el));
+      }
+
+      /* ── Initialize on DOM ready ── */
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initScrollReveal();
+          animateCounters();
+        });
+      } else {
+        initScrollReveal();
+        animateCounters();
+      }
+    })();
+    </script>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<DOCTYPE html>
+  <html>
+    <head>
+      <title>Naim Pinjari</title>
+    </head>
+    <body>
+         
+    </body>
+  </html>
