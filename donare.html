@@ -22,7 +22,14 @@
 
       <!-- Hamburger Toggle -->
       <div class="nav-toggle" onclick="toggleMobileMenu()">
-        <svg width="30" height="20" viewBox="0 0 30 20" fill="none" stroke-width="2.5" stroke-linecap="round">
+        <svg
+          width="30"
+          height="20"
+          viewBox="0 0 30 20"
+          fill="none"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        >
           <line x1="2" y1="4" x2="28" y2="4" stroke="var(--gold)"></line>
           <line x1="2" y1="10" x2="20" y2="10" stroke="var(--green)"></line>
           <line x1="2" y1="16" x2="28" y2="16" stroke="var(--gold)"></line>
@@ -35,7 +42,9 @@
           <button class="nav-link active" onclick="switchPage('home')">
             Home
           </button>
-          <button class="nav-link" onclick="switchPage('about')">About Us</button>
+          <button class="nav-link" onclick="switchPage('about')">
+            About Us
+          </button>
           <button class="nav-link" onclick="switchPage('campaigns')">
             Campaigns
           </button>
@@ -55,16 +64,28 @@
 
         <!-- Admin-only nav tabs -->
         <div class="nav-links" id="adminNavLinks" style="display: none">
-          <button class="nav-link" onclick="switchPage('campaigns')">All Campaigns</button>
-          <button class="nav-link" onclick="switchPage('admin-campaigns')">Manage Campaigns</button>
-          <button class="nav-link" onclick="switchPage('admin-donations')">Donations</button>
-          <button class="nav-link" onclick="switchPage('admin-support')">Support Messages</button>
+          <button class="nav-link" onclick="switchPage('campaigns')">
+            All Campaigns
+          </button>
+          <button class="nav-link" onclick="switchPage('admin-campaigns')">
+            Manage Campaigns
+          </button>
+          <button class="nav-link" onclick="switchPage('admin-donations')">
+            Donations
+          </button>
+          <button class="nav-link" onclick="switchPage('admin-support')">
+            Support Messages
+          </button>
         </div>
 
         <!-- Trustee-only nav tabs -->
         <div class="nav-links" id="trusteeNavLinks" style="display: none">
-          <button class="nav-link" onclick="switchPage('campaigns')">All Campaigns</button>
-          <button class="nav-link active" onclick="switchPage('trustee')">My NGO</button>
+          <button class="nav-link" onclick="switchPage('campaigns')">
+            All Campaigns
+          </button>
+          <button class="nav-link active" onclick="switchPage('trustee')">
+            My NGO
+          </button>
         </div>
 
         <!-- Auth buttons (logged out) -->
@@ -101,10 +122,16 @@
                 communities around the world.
               </p>
               <div class="hero-cta">
-                <button class="btn-hero-primary" onclick="switchPage('campaigns')">
+                <button
+                  class="btn-hero-primary"
+                  onclick="switchPage('campaigns')"
+                >
                   Browse Campaigns
                 </button>
-                <button class="btn-hero-secondary" onclick="switchPage('about')">
+                <button
+                  class="btn-hero-secondary"
+                  onclick="switchPage('about')"
+                >
                   Learn More
                 </button>
               </div>
@@ -247,14 +274,15 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- ─── ABOUT US ─── -->
       <div class="page" id="page-about">
         <div class="about-hero">
           <div class="hero-tag anim anim-d1">✦ Our Story</div>
-          <h1 class="anim anim-d2">Giving made <em>transparent,</em><br />trust made permanent.</h1>
+          <h1 class="anim anim-d2">
+            Giving made <em>transparent,</em><br />trust made permanent.
+          </h1>
           <p class="anim anim-d3">
             Donare was built on a simple belief — that every act of generosity
             deserves accountability, and every donor deserves to see the impact
@@ -324,7 +352,9 @@
         </div>
 
         <div class="about-section">
-          <div class="section-headline anim">What we <span>stand for</span></div>
+          <div class="section-headline anim">
+            What we <span>stand for</span>
+          </div>
           <div class="values-grid">
             <div class="value-card anim anim-d1">
               <div class="value-icon">🔍</div>
@@ -508,7 +538,11 @@
             <div class="form-row">
               <div class="input-group">
                 <label>Phone Number</label
-                ><input type="tel" id="suppPhone" placeholder="+60 12-345 6789" />
+                ><input
+                  type="tel"
+                  id="suppPhone"
+                  placeholder="+60 12-345 6789"
+                />
               </div>
               <div class="input-group">
                 <label>Category</label>
@@ -626,9 +660,9 @@
                   placeholder="••••••••"
                   onkeydown="if (event.key === 'Enter') doLogin();"
                 />
-                <button 
-                  type="button" 
-                  class="password-toggle" 
+                <button
+                  type="button"
+                  class="password-toggle"
                   onclick="togglePasswordVisibility('loginPassword', this)"
                   aria-label="Toggle password visibility"
                 >
@@ -659,18 +693,14 @@
             <div class="auth-brand">Don<span>a</span>re</div>
             <div class="auth-tagline">Create your free account</div>
             <div class="auth-error" id="signupError"></div>
-            
+
             <!-- Vertical layout: all fields stacked -->
             <div class="input-group">
               <label>Full Name</label>
-              <input
-                type="text"
-                id="signupName"
-                placeholder="Your full name"
-              />
+              <input type="text" id="signupName" placeholder="Your full name" />
               <div class="field-error" id="signupNameError"></div>
             </div>
-            
+
             <div class="input-group">
               <label>Email Address</label>
               <input
@@ -680,7 +710,7 @@
               />
               <div class="field-error" id="signupEmailError"></div>
             </div>
-            
+
             <div class="input-group">
               <label>Password</label>
               <div class="password-input-wrapper">
@@ -689,9 +719,9 @@
                   id="signupPassword"
                   placeholder="Min. 6 characters"
                 />
-                <button 
-                  type="button" 
-                  class="password-toggle" 
+                <button
+                  type="button"
+                  class="password-toggle"
                   onclick="togglePasswordVisibility('signupPassword', this)"
                   aria-label="Toggle password visibility"
                 >
@@ -701,7 +731,7 @@
               <div class="password-strength" id="signupPasswordStrength"></div>
               <div class="field-error" id="signupPasswordError"></div>
             </div>
-            
+
             <div class="input-group">
               <label>Confirm Password</label>
               <div class="password-input-wrapper">
@@ -711,9 +741,9 @@
                   placeholder="Re-enter password"
                   onkeydown="if (event.key === 'Enter') doSignup();"
                 />
-                <button 
-                  type="button" 
-                  class="password-toggle" 
+                <button
+                  type="button"
+                  class="password-toggle"
                   onclick="togglePasswordVisibility('signupConfirm', this)"
                   aria-label="Toggle password visibility"
                 >
@@ -722,7 +752,7 @@
               </div>
               <div class="field-error" id="signupConfirmError"></div>
             </div>
-            
+
             <button
               class="btn-primary"
               style="width: 100%; margin-top: 4px"
@@ -839,13 +869,13 @@
                 <thead>
                   <tr>
                     <th>Receipt ID</th>
-<th>Donor</th>
-<th>Campaign</th>
-<th>Amount</th>
-<th>Payment</th>
-<th>Date</th>
-<th>Status</th>
-<th>Action</th>
+                    <th>Donor</th>
+                    <th>Campaign</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody id="adminDonationBody"></tbody>
@@ -882,7 +912,13 @@
           <div class="table-wrap" style="margin-bottom: 20px">
             <div class="table-head">
               <div class="table-head-title">My Campaigns</div>
-<button class="btn-add" onclick="openAddModal()" style="margin-left:auto">+ Add Campaign</button>
+              <button
+                class="btn-add"
+                onclick="openAddModal()"
+                style="margin-left: auto"
+              >
+                + Add Campaign
+              </button>
             </div>
             <div id="trusteeCampaigns"></div>
           </div>
@@ -914,13 +950,18 @@
       <div class="page" id="page-admin-support">
         <div class="admin-header">
           <div class="admin-title">📬 Support Messages</div>
-          <div class="admin-sub">All user support requests submitted via the contact form.</div>
+          <div class="admin-sub">
+            All user support requests submitted via the contact form.
+          </div>
         </div>
         <div class="admin-table-wrap" style="margin-top: 24px">
           <div class="table-wrap">
             <div class="table-head">
               <div class="table-head-title">Inbox</div>
-              <span style="font-size:13px;color:var(--dim)" id="supportMsgCount"></span>
+              <span
+                style="font-size: 13px; color: var(--dim)"
+                id="supportMsgCount"
+              ></span>
             </div>
             <div style="overflow-x: auto">
               <table class="data-table">
@@ -946,7 +987,10 @@
           <div class="table-wrap">
             <div class="table-head">
               <div class="table-head-title">Resolved Queries</div>
-              <span style="font-size: 13px; color: var(--dim)" id="resolvedSupportMsgCount"></span>
+              <span
+                style="font-size: 13px; color: var(--dim)"
+                id="resolvedSupportMsgCount"
+              ></span>
             </div>
             <div style="overflow-x: auto">
               <table class="data-table">
@@ -967,7 +1011,6 @@
           </div>
         </div>
       </div>
-
     </div>
     <!-- end .main-content -->
     <!-- NGO History Modal -->
@@ -1080,14 +1123,20 @@
 ═══════════════════════════════ -->
     <div class="modal-overlay" id="donateModal">
       <div class="modal modal-wide">
-        
         <!-- Payment Processing Overlay -->
         <div class="payment-processing-overlay" id="paymentProcessing">
           <div class="payment-processing-content">
             <div class="payment-spinner"></div>
             <div class="payment-success-icon">✓</div>
-            <div class="payment-processing-text" id="paymentProcessingText">Processing your payment...</div>
-            <div class="payment-processing-subtext" id="paymentProcessingSubtext">Please do not close this window</div>
+            <div class="payment-processing-text" id="paymentProcessingText">
+              Processing your payment...
+            </div>
+            <div
+              class="payment-processing-subtext"
+              id="paymentProcessingSubtext"
+            >
+              Please do not close this window
+            </div>
           </div>
         </div>
 
@@ -1106,11 +1155,28 @@
         </div>
 
         <!-- Campaign header (always visible) -->
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)">
-          <div id="donateEmoji" style="font-size:30px;flex-shrink:0"></div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+          "
+        >
+          <div id="donateEmoji" style="font-size: 30px; flex-shrink: 0"></div>
           <div>
-            <div class="modal-title" id="donateTitle" style="font-size:17px;margin-bottom:2px"></div>
-            <div class="modal-sub" id="donateSub" style="margin-bottom:0"></div>
+            <div
+              class="modal-title"
+              id="donateTitle"
+              style="font-size: 17px; margin-bottom: 2px"
+            ></div>
+            <div
+              class="modal-sub"
+              id="donateSub"
+              style="margin-bottom: 0"
+            ></div>
           </div>
         </div>
 
@@ -1131,18 +1197,37 @@
           </div>
           <div class="input-group">
             <label>Address</label>
-            <textarea id="donorAddress" placeholder="Street, City, State" style="height:68px;resize:none"></textarea>
+            <textarea
+              id="donorAddress"
+              placeholder="Street, City, State"
+              style="height: 68px; resize: none"
+            ></textarea>
           </div>
           <div class="modal-actions">
-            <button class="btn-secondary" onclick="closeModal('donateModal')">Cancel</button>
+            <button class="btn-secondary" onclick="closeModal('donateModal')">
+              Cancel
+            </button>
             <button class="btn-primary" onclick="donateNext(1)">Next →</button>
           </div>
         </div>
 
         <!-- ── STEP 2: Amount + Payment Method ── -->
-        <div id="donateStep2" style="display:none">
-          <div class="donate-step-heading">Step 2 — Amount &amp; Payment Method</div>
-          <div style="font-size:11px;color:var(--dim);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600">Choose Amount (₹)</div>
+        <div id="donateStep2" style="display: none">
+          <div class="donate-step-heading">
+            Step 2 — Amount &amp; Payment Method
+          </div>
+          <div
+            style="
+              font-size: 11px;
+              color: var(--dim);
+              margin-bottom: 10px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              font-weight: 600;
+            "
+          >
+            Choose Amount (₹)
+          </div>
           <div class="amounts">
             <button class="amt-btn" onclick="setAmount(10)">₹ 10</button>
             <button class="amt-btn" onclick="setAmount(25)">₹ 25</button>
@@ -1152,7 +1237,13 @@
           </div>
           <div class="input-group">
             <label>Custom Amount (₹)</label>
-            <input type="number" id="donateAmount" min="1" placeholder="e.g. 75" oninput="clearAmountBtns()" />
+            <input
+              type="number"
+              id="donateAmount"
+              min="1"
+              placeholder="e.g. 75"
+              oninput="clearAmountBtns()"
+            />
           </div>
           <div class="input-group">
             <label>Payment Method</label>
@@ -1163,13 +1254,15 @@
             </select>
           </div>
           <div class="modal-actions">
-            <button class="btn-secondary" onclick="donatePrev(2)">← Back</button>
+            <button class="btn-secondary" onclick="donatePrev(2)">
+              ← Back
+            </button>
             <button class="btn-primary" onclick="donateNext(2)">Next →</button>
           </div>
         </div>
 
         <!-- ── STEP 3a: Bank Transfer ── -->
-        <div id="donateStep3Bank" style="display:none">
+        <div id="donateStep3Bank" style="display: none">
           <div class="donate-step-heading">Step 3 — Bank Transfer Details</div>
           <div class="input-group">
             <label>Bank Name</label>
@@ -1177,28 +1270,49 @@
           </div>
           <div class="input-group">
             <label>Account Holder Name</label>
-            <input type="text" id="bankAccountName" placeholder="Name as on bank account" />
+            <input
+              type="text"
+              id="bankAccountName"
+              placeholder="Name as on bank account"
+            />
           </div>
           <div class="input-group">
             <label>Account Number</label>
-            <input type="text" id="bankAccountNumber" placeholder="e.g. 1234567890" />
+            <input
+              type="text"
+              id="bankAccountNumber"
+              placeholder="e.g. 1234567890"
+            />
           </div>
           <div class="input-group">
             <label>IFSC / SWIFT Code</label>
             <input type="text" id="bankIfsc" placeholder="e.g. MAYB0000001" />
           </div>
           <div class="input-group">
-            <label>Remarks / Reference <span style="color:var(--dim);font-weight:400">(optional)</span></label>
-            <input type="text" id="bankRemarks" placeholder="e.g. Donation for Clean Water" />
+            <label
+              >Remarks / Reference
+              <span style="color: var(--dim); font-weight: 400"
+                >(optional)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="bankRemarks"
+              placeholder="e.g. Donation for Clean Water"
+            />
           </div>
           <div class="modal-actions">
-            <button class="btn-secondary" onclick="donatePrev(3)">← Back</button>
-            <button class="btn-primary" onclick="confirmDonation()">Confirm Donation →</button>
+            <button class="btn-secondary" onclick="donatePrev(3)">
+              ← Back
+            </button>
+            <button class="btn-primary" onclick="confirmDonation()">
+              Confirm Donation →
+            </button>
           </div>
         </div>
 
         <!-- ── STEP 3b: Card Payment ── -->
-        <div id="donateStep3Card" style="display:none">
+        <div id="donateStep3Card" style="display: none">
           <div class="donate-step-heading">Step 3 — Card Payment Details</div>
           <div class="input-group">
             <label>Cardholder Name</label>
@@ -1206,19 +1320,36 @@
           </div>
           <div class="input-group">
             <label>Card Number</label>
-            <input type="text" id="cardNumber" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" oninput="formatCardNumber(this)" />
+            <input
+              type="text"
+              id="cardNumber"
+              maxlength="19"
+              placeholder="XXXX XXXX XXXX XXXX"
+              oninput="formatCardNumber(this)"
+            />
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <div class="input-group" style="margin-bottom:0">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="input-group" style="margin-bottom: 0">
               <label>Expiry Date</label>
-              <input type="text" id="cardExpiry" maxlength="5" placeholder="MM/YY" oninput="formatExpiry(this)" />
+              <input
+                type="text"
+                id="cardExpiry"
+                maxlength="5"
+                placeholder="MM/YY"
+                oninput="formatExpiry(this)"
+              />
             </div>
-            <div class="input-group" style="margin-bottom:0">
+            <div class="input-group" style="margin-bottom: 0">
               <label>CVV</label>
-              <input type="password" id="cardCvv" maxlength="4" placeholder="•••" />
+              <input
+                type="password"
+                id="cardCvv"
+                maxlength="4"
+                placeholder="•••"
+              />
             </div>
           </div>
-          <div class="input-group" style="margin-top:12px">
+          <div class="input-group" style="margin-top: 12px">
             <label>Card Type</label>
             <select id="cardType">
               <option value="Visa">Visa</option>
@@ -1228,11 +1359,14 @@
             </select>
           </div>
           <div class="modal-actions">
-            <button class="btn-secondary" onclick="donatePrev(3)">← Back</button>
-            <button class="btn-primary" onclick="confirmDonation()">Confirm Donation →</button>
+            <button class="btn-secondary" onclick="donatePrev(3)">
+              ← Back
+            </button>
+            <button class="btn-primary" onclick="confirmDonation()">
+              Confirm Donation →
+            </button>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -1294,8 +1428,16 @@
           ><input type="number" id="newGoal" placeholder="e.g. 25000" />
         </div>
         <div class="input-group">
-          <label>Max Donation per Transaction (₹) <span style="color:var(--dim);font-weight:400">(optional)</span></label
-          ><input type="number" id="newMaxDonation" placeholder="Leave empty for no limit" />
+          <label
+            >Max Donation per Transaction (₹)
+            <span style="color: var(--dim); font-weight: 400"
+              >(optional)</span
+            ></label
+          ><input
+            type="number"
+            id="newMaxDonation"
+            placeholder="Leave empty for no limit"
+          />
         </div>
         <div class="input-group">
           <label>Description</label
@@ -1305,23 +1447,68 @@
           ></textarea>
         </div>
         <div class="input-group">
-          <label>Campaign Image <span style="color:var(--dim);font-weight:400">(optional)</span></label>
-          <div style="display:flex;gap:6px;margin-bottom:10px">
-            <button type="button" id="newImgTabUrl" onclick="switchImgTab('new','url')"
-              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--gold);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+          <label
+            >Campaign Image
+            <span style="color: var(--dim); font-weight: 400"
+              >(optional)</span
+            ></label
+          >
+          <div style="display: flex; gap: 6px; margin-bottom: 10px">
+            <button
+              type="button"
+              id="newImgTabUrl"
+              onclick="switchImgTab('new', 'url')"
+              style="
+                flex: 1;
+                padding: 8px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                background: var(--gold);
+                color: #fff;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+              "
+            >
               🔗 Image URL
             </button>
-            <button type="button" id="newImgTabFile" onclick="switchImgTab('new','file')"
-              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+            <button
+              type="button"
+              id="newImgTabFile"
+              onclick="switchImgTab('new', 'file')"
+              style="
+                flex: 1;
+                padding: 8px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                background: var(--bg2);
+                color: var(--text);
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+              "
+            >
               📁 Upload File
             </button>
           </div>
           <div id="newImgUrlSection">
-            <input type="text" id="newImageUrl" placeholder="https://example.com/image.jpg" />
+            <input
+              type="text"
+              id="newImageUrl"
+              placeholder="https://example.com/image.jpg"
+            />
           </div>
-          <div id="newImgFileSection" style="display:none">
-            <input type="file" id="newImageFile" accept="image/*" onchange="handleImageUpload(this,'new')" style="padding:8px" />
-            <div id="newImagePreview" style="margin-top:6px"></div>
+          <div id="newImgFileSection" style="display: none">
+            <input
+              type="file"
+              id="newImageFile"
+              accept="image/*"
+              onchange="handleImageUpload(this, 'new')"
+              style="padding: 8px"
+            />
+            <div id="newImagePreview" style="margin-top: 6px"></div>
           </div>
         </div>
         <button
@@ -1376,185 +1563,239 @@
           <label>Goal ₹</label> <input type="number" id="editGoal" />
         </div>
         <div class="input-group">
-          <label>Max Donation per Transaction (₹) <span style="color:var(--dim);font-weight:400">(optional)</span></label>
-          <input type="number" id="editMaxDonation" placeholder="Leave empty for no limit" />
+          <label
+            >Max Donation per Transaction (₹)
+            <span style="color: var(--dim); font-weight: 400"
+              >(optional)</span
+            ></label
+          >
+          <input
+            type="number"
+            id="editMaxDonation"
+            placeholder="Leave empty for no limit"
+          />
         </div>
         <div class="input-group">
           <label>Description</label>
-          <textarea id="editDesc" placeholder="Campaign description…"></textarea>
+          <textarea
+            id="editDesc"
+            placeholder="Campaign description…"
+          ></textarea>
         </div>
         <div class="input-group">
-          <label>Campaign Image <span style="color:var(--dim);font-weight:400">(optional)</span></label>
-          <div style="display:flex;gap:6px;margin-bottom:10px">
-            <button type="button" id="editImgTabUrl" onclick="switchImgTab('edit','url')"
-              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--gold);color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+          <label
+            >Campaign Image
+            <span style="color: var(--dim); font-weight: 400"
+              >(optional)</span
+            ></label
+          >
+          <div style="display: flex; gap: 6px; margin-bottom: 10px">
+            <button
+              type="button"
+              id="editImgTabUrl"
+              onclick="switchImgTab('edit', 'url')"
+              style="
+                flex: 1;
+                padding: 8px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                background: var(--gold);
+                color: #fff;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+              "
+            >
               🔗 Image URL
             </button>
-            <button type="button" id="editImgTabFile" onclick="switchImgTab('edit','file')"
-              style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s">
+            <button
+              type="button"
+              id="editImgTabFile"
+              onclick="switchImgTab('edit', 'file')"
+              style="
+                flex: 1;
+                padding: 8px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                background: var(--bg2);
+                color: var(--text);
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+              "
+            >
               📁 Upload File
             </button>
           </div>
           <div id="editImgUrlSection">
-            <input type="text" id="editImageUrl" placeholder="https://example.com/image.jpg" />
+            <input
+              type="text"
+              id="editImageUrl"
+              placeholder="https://example.com/image.jpg"
+            />
           </div>
-          <div id="editImgFileSection" style="display:none">
-            <input type="file" id="editImageFile" accept="image/*" onchange="handleImageUpload(this,'edit')" style="padding:8px" />
-            <div id="editImagePreview" style="margin-top:6px"></div>
+          <div id="editImgFileSection" style="display: none">
+            <input
+              type="file"
+              id="editImageFile"
+              accept="image/*"
+              onchange="handleImageUpload(this, 'edit')"
+              style="padding: 8px"
+            />
+            <div id="editImagePreview" style="margin-top: 6px"></div>
           </div>
         </div>
         <div class="modal-actions">
-          <button class="btn-secondary" onclick="closeModal('editModal')">Cancel</button>
-          <button class="btn-primary" onclick="saveCampaign()">Save Changes</button>
+          <button class="btn-secondary" onclick="closeModal('editModal')">
+            Cancel
+          </button>
+          <button class="btn-primary" onclick="saveCampaign()">
+            Save Changes
+          </button>
         </div>
       </div>
     </div>
 
     <!-- ─── TOAST NOTIFICATION ─── -->
-    <div id="toast" style="
-      position:fixed; bottom:28px; left:50%; transform:translateX(-50%);
-      background:#1e293b; color:#fff; padding:12px 24px; border-radius:12px;
-      font-size:14px; font-weight:500; box-shadow:0 4px 20px rgba(0,0,0,0.3);
-      opacity:0; pointer-events:none; transition:opacity 0.3s; z-index:9999;
-      white-space:nowrap;
-    "></div>
+    <div
+      id="toast"
+      style="
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1e293b;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        z-index: 9999;
+        white-space: nowrap;
+      "
+    ></div>
 
     <!-- ═══════════════════════════════════════
      SCROLL-REVEAL ANIMATION ENGINE
     ═══════════════════════════════════════ -->
     <script>
-    (function() {
-      'use strict';
+      (function () {
+        "use strict";
 
-      /* ── IntersectionObserver for scroll-reveal ── */
-      const animSelectors = '.anim, .anim-left, .anim-right, .anim-scale';
+        /* ── IntersectionObserver for scroll-reveal ── */
+        const animSelectors = ".anim, .anim-left, .anim-right, .anim-scale";
 
-      function initScrollReveal() {
-        const elements = document.querySelectorAll(animSelectors);
-        if (!elements.length) return;
+        function initScrollReveal() {
+          const elements = document.querySelectorAll(animSelectors);
+          if (!elements.length) return;
 
-        // Respect reduced motion preference
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          elements.forEach(el => el.classList.add('anim-visible'));
-          return;
+          // Respect reduced motion preference
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            elements.forEach((el) => el.classList.add("anim-visible"));
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("anim-visible");
+                  observer.unobserve(entry.target); // only animate once
+                }
+              });
+            },
+            {
+              threshold: 0.12,
+              rootMargin: "0px 0px -40px 0px",
+            },
+          );
+
+          elements.forEach((el) => observer.observe(el));
         }
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('anim-visible');
-              observer.unobserve(entry.target); // only animate once
-            }
-          });
-        }, {
-          threshold: 0.12,
-          rootMargin: '0px 0px -40px 0px'
-        });
-
-        elements.forEach(el => observer.observe(el));
-      }
-
-      /* ── Re-trigger animations on page switch ── */
-      const _origSwitchPage = window.switchPage;
-      if (typeof _origSwitchPage === 'function') {
-        window.switchPage = async function(page) {
-          await _origSwitchPage(page);
-          // Re-observe new elements after dynamic render
-          requestAnimationFrame(() => {
+        /* ── Re-trigger animations on page switch ── */
+        const _origSwitchPage = window.switchPage;
+        if (typeof _origSwitchPage === "function") {
+          window.switchPage = async function (page) {
+            await _origSwitchPage(page);
+            // Re-observe new elements after dynamic render
             requestAnimationFrame(() => {
-              initScrollReveal();
+              requestAnimationFrame(() => {
+                initScrollReveal();
+              });
             });
-          });
-        };
-      }
+          };
+        }
 
-      /* ── Stat counter animation ── */
-      function animateCounters() {
-        const statNumbers = document.querySelectorAll('.hero-stats .stat-n');
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const el = entry.target;
-              const text = el.textContent;
-              // Extract number from text like "1.2M+", "6", "1,179", "5 NGOs"
-              const numMatch = text.match(/([\d,\.]+)/);
-              if (numMatch) {
-                const finalNum = parseFloat(numMatch[1].replace(/,/g, ''));
-                const prefix = text.substring(0, text.indexOf(numMatch[1]));
-                const suffix = text.substring(text.indexOf(numMatch[1]) + numMatch[1].length);
-                const hasDecimal = numMatch[1].includes('.');
-                const hasComma = numMatch[1].includes(',');
-                const duration = 1200;
-                const start = performance.now();
+        /* ── Stat counter animation ── */
+        function animateCounters() {
+          const statNumbers = document.querySelectorAll(".hero-stats .stat-n");
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const el = entry.target;
+                  const text = el.textContent;
+                  // Extract number from text like "1.2M+", "6", "1,179", "5 NGOs"
+                  const numMatch = text.match(/([\d,\.]+)/);
+                  if (numMatch) {
+                    const finalNum = parseFloat(numMatch[1].replace(/,/g, ""));
+                    const prefix = text.substring(0, text.indexOf(numMatch[1]));
+                    const suffix = text.substring(
+                      text.indexOf(numMatch[1]) + numMatch[1].length,
+                    );
+                    const hasDecimal = numMatch[1].includes(".");
+                    const hasComma = numMatch[1].includes(",");
+                    const duration = 1200;
+                    const start = performance.now();
 
-                function step(now) {
-                  const elapsed = now - start;
-                  const progress = Math.min(elapsed / duration, 1);
-                  // Ease-out cubic
-                  const eased = 1 - Math.pow(1 - progress, 3);
-                  let current = eased * finalNum;
+                    function step(now) {
+                      const elapsed = now - start;
+                      const progress = Math.min(elapsed / duration, 1);
+                      // Ease-out cubic
+                      const eased = 1 - Math.pow(1 - progress, 3);
+                      let current = eased * finalNum;
 
-                  if (hasDecimal) {
-                    current = current.toFixed(1);
-                  } else {
-                    current = Math.round(current);
-                    if (hasComma) {
-                      current = current.toLocaleString();
+                      if (hasDecimal) {
+                        current = current.toFixed(1);
+                      } else {
+                        current = Math.round(current);
+                        if (hasComma) {
+                          current = current.toLocaleString();
+                        }
+                      }
+                      el.textContent = prefix + current + suffix;
+                      if (progress < 1) requestAnimationFrame(step);
                     }
+                    requestAnimationFrame(step);
                   }
-                  el.textContent = prefix + current + suffix;
-                  if (progress < 1) requestAnimationFrame(step);
+                  observer.unobserve(el);
                 }
-                requestAnimationFrame(step);
-              }
-              observer.unobserve(el);
-            }
+              });
+            },
+            { threshold: 0.5 },
+          );
+
+          statNumbers.forEach((el) => observer.observe(el));
+        }
+
+        /* ── Initialize on DOM ready ── */
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", () => {
+            initScrollReveal();
+            animateCounters();
           });
-        }, { threshold: 0.5 });
-
-        statNumbers.forEach(el => observer.observe(el));
-      }
-
-      /* ── Initialize on DOM ready ── */
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
+        } else {
           initScrollReveal();
           animateCounters();
-        });
-      } else {
-        initScrollReveal();
-        animateCounters();
-      }
-    })();
+        }
+      })();
     </script>
-
   </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<DOCTYPE html>
-  <html>
-    <head>
-      <title>Naim Pinjari</title>
-    </head>
-    <body>
-         
-    </body>
   </html>

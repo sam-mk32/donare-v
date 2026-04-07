@@ -26,9 +26,8 @@ if ($file['error'] !== UPLOAD_ERR_OK) {
 
 // Check file type
 $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-$finfo = finfo_open(FILEINFO_MIME_TYPE);
-$mimeType = finfo_file($finfo, $file['tmp_name']);
-finfo_close($finfo);
+$finfo = new finfo(FILEINFO_MIME_TYPE);
+$mimeType = $finfo->file($file['tmp_name']);
 
 if (!in_array($mimeType, $allowedTypes)) {
     http_response_code(400);
