@@ -1,0 +1,25 @@
+{
+
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "nixpacksPlan": {
+      "phases": {
+        "setup": {
+          "nixPkgs": ["php81", "php81Extensions.pdo_mysql", "php81Extensions.mysqli"]
+        },
+        "build": {
+          "cmds": [
+            "mkdir -p storage/logs storage/cache public/uploads",
+            "chmod -R 755 storage public/uploads"
+          ]
+        }
+      }
+    }
+  },
+  "deploy": {
+    "startCommand": "php -S 0.0.0.0:$PORT -t public",
+    "healthcheckPath": "/",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 3
+  }
+}

@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ['php81', 'php81Extensions.pdo_mysql', 'php81Extensions.mysqli', 'mysql80']
+
+[phases.build]
+cmds = [
+    'mkdir -p storage/logs storage/cache public/uploads',
+    'chmod -R 755 storage public/uploads',
+]
+
+[phases.start]
+cmds = ['php -S 0.0.0.0:$PORT -t public']

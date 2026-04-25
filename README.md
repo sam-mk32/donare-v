@@ -80,13 +80,13 @@ Donare simplifies the donation process by providing:
 
 ---
 
-## 📸 Screenshots
+<!-- ## 📸 Screenshots
 
 > Add screenshots of your application here:
 > - Home page with campaign cards
 > - Donation form with payment options
 > - Admin dashboard
-> - Trustee NGO view
+> - Trustee NGO view -->
 
 ---
 
@@ -103,7 +103,7 @@ Donare simplifies the donation process by providing:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/donare-v.git
+   git clone https://github.com/sam.mk32/donare-v.git
    cd donare-v
    ```
 
@@ -566,9 +566,9 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
 ## 📞 Contact & Support
 
-- **Project Repository:** [GitHub](https://github.com/yourusername/donare-v)
-- **Issue Tracker:** [GitHub Issues](https://github.com/yourusername/donare-v/issues)
-- **Email:** support@donare.org
+- **Project Repository:** [GitHub](https://github.com/sam.mk32/donare-v)
+- **Issue Tracker:** [GitHub Issues](https://github.com/sam.mk32/donare-v/issues)
+- **Email:** aasslv24@gmail.com
 
 ---
 

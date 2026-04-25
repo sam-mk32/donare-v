@@ -1,0 +1,4 @@
+# Don't deploy local development files
+.windsurf/
+*.md
+!.github/
